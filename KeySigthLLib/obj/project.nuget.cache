@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Xt0lopGTAPyIkvUFsX5B7JMPifzHwhce5mbml6Z9LTsk2JL5rSOyf4mULbvO+wOGbdXm7OSy4NhxsXdPYm+GqA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\10088651\\Desktop\\Automacao-Ensaios-WIFI-Bluetooth-main\\KeySigthLLib\\KeySightLib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\10088651\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
+  ],
+  "logs": []
+}

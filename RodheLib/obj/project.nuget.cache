@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "p6AVvOio9wIYamp6nLvdB+FDR3hzyZoWIUi0m4/k1D5R4L1JCcylt0Bd65sjGLMjkVVYwUek/Etz4RxA0/sPfA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\10088651\\Desktop\\Automacao-Ensaios-WIFI-Bluetooth-main\\RodheLib\\RodheLib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\10088651\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
+  ],
+  "logs": []
+}

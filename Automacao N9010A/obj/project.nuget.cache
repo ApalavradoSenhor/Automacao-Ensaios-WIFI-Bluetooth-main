@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "JFjmRds1PX0XRPbFGj+T1WZ4g3tngrh+bgmWzdILaldviAT0fv3xb9/DjXPgLWMT1B6oCZi87MkFnWl22yDrjA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\10088651\\Desktop\\Automacao-Ensaios-WIFI-Bluetooth-main\\Automacao N9010A\\Automacao WIFI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\10088651\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
+  ],
+  "logs": []
+}
