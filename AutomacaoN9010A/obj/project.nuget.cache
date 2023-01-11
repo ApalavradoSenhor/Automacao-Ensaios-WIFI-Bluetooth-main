@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "4JTgFBKgUx4VQCAT7X1XptvZZeMBmk4a+C5y+bgplFA5NrrDO91xx7kuifVQfRry0nE2OLwKjEkzRG2u0rEOGg==",
+  "dgSpecHash": "r0P6Kv6ZGGaY43BiTiskVMYnPMNpWxnoJH6cjtzCXvjFcVP7EkMDzQc7k6CcrhkLvPsa7Q2McMpBaMPpoFrdag==",
   "success": true,
-  "projectFilePath": "C:\\Users\\10088651\\Desktop\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
+  "projectFilePath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\10088651\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
+    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512",
+    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
