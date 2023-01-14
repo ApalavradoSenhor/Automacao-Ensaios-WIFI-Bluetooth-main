@@ -1,13 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Y+oflnG5/EzL4kxRxlOG8BQz2omt7tTKycwr4K6pQbzwQOziTVnOeyAcFjiuLtl1h956ODWubMvFl8DYSFKf9w==",
+  "dgSpecHash": "NAfuK8dby8TzyOLzueXYAst8eEkjMtS2z0pN8AGzLpyI3ZiCJieFIsd0oTcNY34WevdPW506XdcLfMdh03P2ZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\KeySigthLLib\\KeySightLib.csproj",
+  "projectFilePath": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\KeySigthLLib\\KeySightLib.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512",
-    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\10088365\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
   ],
   "logs": []
 }

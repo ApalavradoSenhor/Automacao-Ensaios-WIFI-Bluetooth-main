@@ -5,7 +5,7 @@ using MatheusProductions.KeysightLib;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
-using System.Media;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 
 namespace Automacao_N9010A
@@ -14,9 +14,14 @@ namespace Automacao_N9010A
 
     public partial class Principal : Form
     {
-        string RefLevel;
-        string Att;
-        string marca;
+
+        public string nomePasta { get; set; }
+        public string nomeEnsaio { get; set; }
+        public string nomeMetrologista { get; set; }
+
+        string RefLevel { get; set; }
+        string Att { get; set; }
+        string marca { get; set; }
         string configFreqWifi;
         string configFreqBt;
         string caminhoJson = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
@@ -99,13 +104,13 @@ namespace Automacao_N9010A
                 CBSelTipo.SelectedIndex = CarregaTipo();
                 if (CBSelTipo.SelectedItem.Equals("Wifi"))
                 {
-                    ListaTecnologiasBT.Visible = false;
-                    ListaTecnologiasWifi.Visible = true;
+                    GridFreqWifi.Visible = true;
+                    GridFreqBt.Visible = false;
                 }
                 else
                 {
-                    ListaTecnologiasBT.Visible = true;
-                    ListaTecnologiasWifi.Visible = false;
+                    GridFreqWifi.Visible = false;
+                    GridFreqBt.Visible = true;
                 }
             }
         }
@@ -308,636 +313,63 @@ namespace Automacao_N9010A
         }
         #endregion
 
-        public void Ensaio_Largura_de_faixa_a_6_dB(string valFreq, string ip, string ensaioAtual, Configurações config)
+
+        private bool CriaPasta()
         {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = CarregaMarca();
-            if (marca != "NA")
+            if (!Directory.Exists(nomePasta + @"\" + nomeEnsaio))
             {
-                if (ensaioAtual == "Bluetooth Low Energy")
-                {
-                    radical.Largura_6dB(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11a" || ensaioAtual == "802.11b" || ensaioAtual == "802.11g" || ensaioAtual == "802.11n (20)" || ensaioAtual == "802.11ac (20)" || ensaioAtual == "802.11ax (20)")
-                {
-                    radical.Largura_6dB(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (40)" || ensaioAtual == "802.11ac (40)" || ensaioAtual == "802.11ax (40)")
-                {
-                    radical.Largura_6dB(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (80)" || ensaioAtual == "802.11ac (80)" || ensaioAtual == "802.11ax (80)")
-                {
-                    radical.Largura_6dB(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11ax (160)")
-                {
-                    radical.Largura_6dB(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-            }
-
-        }
-
-        public void Ensaio_Largura_de_faixa_a_26_dB(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = CarregaMarca();
-            if (marca != "NA")
-            {
-                if (marca != "NA")
-                {
-                    if (ensaioAtual == "Bluetooth Low Energy")
-                    {
-                        radical.Largura_26dB(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        return;
-                    }
-                    if (ensaioAtual == "802.11a" || ensaioAtual == "802.11b" || ensaioAtual == "802.11g" || ensaioAtual == "802.11n (20)" || ensaioAtual == "802.11ac (20)" || ensaioAtual == "802.11ax (20)")
-                    {
-                        radical.Largura_26dB(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        return;
-                    }
-                    if (ensaioAtual == "802.11n (40)" || ensaioAtual == "802.11ac (40)" || ensaioAtual == "802.11ax (40)")
-                    {
-                        radical.Largura_26dB(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                        return;
-                    }
-                    if (ensaioAtual == "802.11n (80)" || ensaioAtual == "802.11ac (80)" || ensaioAtual == "802.11ax (80)")
-                    {
-                        radical.Largura_26dB(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                        return;
-                    }
-                    if (ensaioAtual == "802.11ax (160)")
-                    {
-                        radical.Largura_26dB(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                        return;
-                    }
-                }
-            }
-        }
-
-        public void Ensaio_pico_da_densidade_de_potência(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = CarregaMarca();
-
-            if (marca != "NA")
-            {
-                if (ensaioAtual == "Bluetooth Low Energy")
-                {
-                    radical.Pico_da_densidade_de_potência(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11a" || ensaioAtual == "802.11b" || ensaioAtual == "802.11g" || ensaioAtual == "802.11n (20)" || ensaioAtual == "802.11ac (20)" || ensaioAtual == "802.11ax (20)")
-                {
-                    radical.Pico_da_densidade_de_potência(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (40)" || ensaioAtual == "802.11ac (40)" || ensaioAtual == "802.11ax (40)")
-                {
-                    radical.Pico_da_densidade_de_potência(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (80)" || ensaioAtual == "802.11ac (80)" || ensaioAtual == "802.11ax (80)")
-                {
-                    radical.Pico_da_densidade_de_potência(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11ax (160)")
-                {
-                    radical.Pico_da_densidade_de_potência(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-            }
-        }
-
-        public void Ensaio_Valor_Medio_Densidade_Espectral(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = CarregaMarca();
-            if (marca != "NA")
-            {
-                if (ensaioAtual == "Bluetooth Low Energy")
-                {
-                    radical.Valor_médio_da_densidade_espectral_de_potência(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11a" || ensaioAtual == "802.11b" || ensaioAtual == "802.11g" || ensaioAtual == "802.11n (20)" || ensaioAtual == "802.11ac (20)" || ensaioAtual == "802.11ax (20)")
-                {
-                    radical.Valor_médio_da_densidade_espectral_de_potência(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (40)" || ensaioAtual == "802.11ac (40)" || ensaioAtual == "802.11ax (40)")
-                {
-                    radical.Valor_médio_da_densidade_espectral_de_potência(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (80)" || ensaioAtual == "802.11ac (80)" || ensaioAtual == "802.11ax (80)")
-                {
-                    radical.Valor_médio_da_densidade_espectral_de_potência(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11ax (160)")
-                {
-                    radical.Valor_médio_da_densidade_espectral_de_potência(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-            }
-
-        }
-
-        public void Ensaio_Potencia_de_Pico_Maxima(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = CarregaMarca();
-
-            if (marca != "NA")
-            {
-                if (ensaioAtual == "Bluetooth Low Energy")
-                {
-                    radical.Potência_de_pico_máxima(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11a" || ensaioAtual == "802.11b" || ensaioAtual == "802.11g" || ensaioAtual == "802.11n (20)" || ensaioAtual == "802.11ac (20)" || ensaioAtual == "802.11ax (20)")
-                {
-                    radical.Potência_de_pico_máxima(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (40)" || ensaioAtual == "802.11ac (40)" || ensaioAtual == "802.11ax (40)")
-                {
-                    radical.Potência_de_pico_máxima(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (80)" || ensaioAtual == "802.11ac (80)" || ensaioAtual == "802.11ax (80)")
-                {
-                    radical.Potência_de_pico_máxima(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11ax (160)")
-                {
-                    radical.Potência_de_pico_máxima(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-            }
-        }
-
-        public void Ensaio_Valor_médio_da_potência_máxima_de_saída(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = CarregaMarca();
-
-            if (marca != "NA")
-            {
-                if (ensaioAtual == "Bluetooth Low Energy")
-                {
-                    radical.Valor_médio_da_potência_máxima_de_saída(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11a" || ensaioAtual == "802.11b" || ensaioAtual == "802.11g" || ensaioAtual == "802.11n (20)" || ensaioAtual == "802.11ac (20)" || ensaioAtual == "802.11ax (20)")
-                {
-                    radical.Valor_médio_da_potência_máxima_de_saída(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (40)" || ensaioAtual == "802.11ac (40)" || ensaioAtual == "802.11ax (40)")
-                {
-                    radical.Valor_médio_da_potência_máxima_de_saída(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (80)" || ensaioAtual == "802.11ac (80)" || ensaioAtual == "802.11ax (80)")
-                {
-                    radical.Valor_médio_da_potência_máxima_de_saída(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-                if (ensaioAtual == "802.11ax (160)")
-                {
-                    radical.Valor_médio_da_potência_máxima_de_saída(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                    return;
-                }
-            }
-
-        }
-
-        public void Ensaio_Espurios(string freqI, string freqF, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = CarregaMarca();
-            configFreqWifi = CarregaConfigFreqWifi();
-            configFreqBt = CarregaConfigFreqBt();
-
-            if (marca != "NA")
-            {
-                if (ensaioAtual == "Bluetooth Low Energy")
-                {
-                    radical.Espurios(freqI, freqF, ip, ensaioAtual, RefLevel, Att, config.GetTPrints(), marca, "2", configFreqWifi);
-                    return;
-                }
-                if (ensaioAtual == "802.11a" || ensaioAtual == "802.11b" || ensaioAtual == "802.11g" || ensaioAtual == "802.11n (20)" || ensaioAtual == "802.11ac (20)" || ensaioAtual == "802.11ax (20)")
-                {
-                    radical.Espurios(freqI, freqF, ip, ensaioAtual, RefLevel, Att, config.GetTPrints(), marca, "20", configFreqWifi);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (40)" || ensaioAtual == "802.11ac (40)" || ensaioAtual == "802.11ax (40)")
-                {
-                    radical.Espurios(freqI, freqF, ip, ensaioAtual, RefLevel, Att, config.GetTPrints(), marca, "40", configFreqWifi);
-                    return;
-                }
-                if (ensaioAtual == "802.11n (80)" || ensaioAtual == "802.11ac (80)" || ensaioAtual == "802.11ax (80)")
-                {
-                    radical.Espurios(freqI, freqF, ip, ensaioAtual, RefLevel, Att, config.GetTPrints(), marca, "80", configFreqWifi);
-                    return;
-                }
-                if (ensaioAtual == "802.11ax (160)")
-                {
-                    radical.Espurios(freqI, freqF, ip, ensaioAtual, RefLevel, Att, config.GetTPrints(), marca, "160", configFreqWifi);
-                    return;
-                }
-                if (ensaioAtual == "GFSK" || ensaioAtual == "PI4 DQPSK" || ensaioAtual == "8DPSK")
-                {
-                    radical.Espurios(freqI, freqF, ip, ensaioAtual, RefLevel, Att, config.GetTPrints(), marca, "2", configFreqBt);
-                    return;
-                }
+                Directory.CreateDirectory(nomePasta + @"\" + nomeEnsaio);
+                nomePasta = nomePasta + @"\" + nomeEnsaio;
+                return true;
             }
             else
             {
-                MessageBox.Show("Selecione um Modelo");
+                nomePasta = nomePasta + @"\" + nomeEnsaio;
+                return true;
             }
-
         }
-
-
-        public void Ensaio_Tempo_de_Ocupação(string valFreq, string ip, string ensaioAtual, Configurações config)
+        public void Ensaio_Tempo_de_Ocupação(string valFreq, string ip, string ensaioAtual, bool prints)
         {
             radical = new AutomacaoN9010A();
             Att = CarregaAtt();
             RefLevel = CarregaRefLevel();
             marca = config.GetMarca();
-            string nomePasta = @"\\A-N9010A-00151\prints\Tempo de Ocupacao";
             if (marca != "NA")
             {
-                switch (ensaioAtual)
+                if (radical.TempoDeOcupacao(valFreq, ip, "2", RefLevel, Att, marca))
                 {
-                    case "GFSK":
-                        if (radical.TempoDeOcupacao(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca))
-                        {
-                            DialogResult dialogResult = DialogResult.No;
-                            while (dialogResult == DialogResult.No)
-                            {
-                                radical.TempoDeOcupacao(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                                dialogResult = MessageBox.Show("Tudo certo ai, chefia?", "Aviso", MessageBoxButtons.YesNo);
-                            }
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkersTempo(valFreq, ensaioAtual, marca, ip, nomePasta);
-                        }
-                        break;
-                    case "PI4 DQPSK":
-                        if (radical.TempoDeOcupacao(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca))
-                        {
-                            DialogResult dialogResult = DialogResult.No;
-                            while (dialogResult == DialogResult.No)
-                            {
-                                radical.TempoDeOcupacao(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                                dialogResult = MessageBox.Show("Tudo certo ai, chefia?", "Aviso", MessageBoxButtons.YesNo);
-                            }
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkersTempo(valFreq, ensaioAtual, marca, ip, nomePasta);
-                        }
-                        break;
-                    case "8DPSK":
-                        if (radical.TempoDeOcupacao(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca))
-                        {
-                            DialogResult dialogResult = DialogResult.No;
-                            while (dialogResult == DialogResult.No)
-                            {
-                                radical.TempoDeOcupacao(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                                dialogResult = MessageBox.Show("Tudo certo ai, chefia?", "Aviso", MessageBoxButtons.YesNo);
-                            }
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkersTempo(valFreq, ensaioAtual, marca, ip, nomePasta);
-                        }
-                        break;
+                    DialogResult dialogResult = DialogResult.No;
+                    while (dialogResult == DialogResult.No)
+                    {
+                        radical.TempoDeOcupacao(valFreq, ip, "2", RefLevel, Att, marca);
+                        dialogResult = MessageBox.Show("Tudo certo ai, chefia?", "Aviso", MessageBoxButtons.YesNo);
+                    }
+                    radical.TiraPrint(valFreq, ip, ensaioAtual, prints, marca, nomePasta, "TempoDeOcupacao");
+                    radical.GetMarkersTempo(valFreq, ensaioAtual, marca, ip, nomePasta);
                 }
             }
         }
 
-
-        public void Ensaio_Numero_de_Canais(string freqI, string freqF, string freqM, string ip, string ensaioAtual, Configurações config)
+        public void Ensaio_Numero_de_Ocupações(string valFreq, string ip, string ensaioAtual, bool prints)
         {
             radical = new AutomacaoN9010A();
             Att = CarregaAtt();
             RefLevel = CarregaRefLevel();
             marca = config.GetMarca();
-            string nomePasta = @"\\A-N9010A-00151\prints\Numero de Canais";
-            if (marca != "NA")
-            {
-                switch (ensaioAtual)
-                {
-                    case "GFSK":
-                        radical.Numero_De_Frequencia_de_Salto(freqI, freqM, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        MessageBox.Show("Tudo Certo ai, chefia?");
-                        if (config.GetTPrints())
-                        {
-                            radical.TiraPrint(freqI + " " + freqM, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                        }
-                        radical.Numero_De_Frequencia_de_Salto(freqM, freqF, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        MessageBox.Show("Tudo Certo ai, chefia?");
-                        if (config.GetTPrints())
-                        {
-                            radical.TiraPrint(freqM + " " + freqF, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                        }
-                        break;
-                    case "PI4 DQPSK":
-                        radical.Numero_De_Frequencia_de_Salto(freqI, freqM, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        MessageBox.Show("Tudo Certo ai, chefia?");
-                        if (config.GetTPrints())
-                        {
-                            radical.TiraPrint(freqI + " " + freqM, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                        }
-                        radical.Numero_De_Frequencia_de_Salto(freqM, freqF, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        MessageBox.Show("Tudo Certo ai, chefia?");
-                        if (config.GetTPrints())
-                        {
-                            radical.TiraPrint(freqM + " " + freqF, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                        }
-                        break;
-                    case "8DPSK":
-                        radical.Numero_De_Frequencia_de_Salto(freqI, freqM, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        MessageBox.Show("Tudo Certo ai, chefia?");
-                        if (config.GetTPrints())
-                        {
-                            radical.TiraPrint(freqI + " " + freqM, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                        }
-                        radical.Numero_De_Frequencia_de_Salto(freqM, freqF, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        MessageBox.Show("Tudo Certo ai, chefia?");
-                        if (config.GetTPrints())
-                        {
-                            radical.TiraPrint(freqM + " " + freqF, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                        }
-                        break;
-                }
-            }
-        }
-
-        public void Ensaio_Numero_de_Ocupações(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = config.GetMarca();
-            string nomePasta = @"\\A-N9010A-00151\prints\Numero de Ocupaçoes";
             int numMarkers = 0;
             if (marca != "NA")
             {
-                switch (ensaioAtual)
-                {
-                    case "GFSK":
-                        if (radical.NumeroDeOcupacoes(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca, ref numMarkers))
-                        {
-                            DialogResult dialogResult = DialogResult.No;
-                            while (dialogResult == DialogResult.No)
-                            {
-                                radical.NumeroDeOcupacoes(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca, ref numMarkers);
-                                dialogResult = MessageBox.Show("Tudo certo ai, chefia?", "Aviso", MessageBoxButtons.YesNo);
-                            }
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkersNmrOcu(valFreq, ensaioAtual, marca, ip, numMarkers, nomePasta);
-                        }
-                        break;
-                    case "PI4 DQPSK":
-                        if (radical.NumeroDeOcupacoes(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca, ref numMarkers))
-                        {
-                            DialogResult dialogResult = DialogResult.No;
-                            while (dialogResult == DialogResult.No)
-                            {
-                                radical.NumeroDeOcupacoes(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca, ref numMarkers);
-                                dialogResult = MessageBox.Show("Tudo certo ai, chefia?", "Aviso", MessageBoxButtons.YesNo);
-                            }
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkersNmrOcu(valFreq, ensaioAtual, marca, ip, numMarkers, nomePasta);
-                        }
-                        break;
-                    case "8DPSK":
-                        if (radical.NumeroDeOcupacoes(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca, ref numMarkers))
-                        {
-                            DialogResult dialogResult = DialogResult.No;
-                            while (dialogResult == DialogResult.No)
-                            {
-                                radical.NumeroDeOcupacoes(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca, ref numMarkers);
-                                dialogResult = MessageBox.Show("Tudo certo ai, chefia?", "Aviso", MessageBoxButtons.YesNo);
-                            }
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkersNmrOcu(valFreq, ensaioAtual, marca, ip, numMarkers, nomePasta);
-                        }
-                        break;
-                }
+                if (radical.NumeroDeOcupacoes(valFreq, ip, ensaioAtual, "2", RefLevel, Att, marca, ref numMarkers, nomePasta))
+                radical.TiraPrint(valFreq, ip, ensaioAtual, prints, marca, nomePasta, "NumeroDeOcupacoes");
+                radical.GetMarkersNmrOcu(valFreq, ensaioAtual, marca, ip, numMarkers, nomePasta);
             }
-        }
-
-        public void Ensaio_Potencia_de_Saida(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = CarregaRefLevel();
-            marca = config.GetMarca();
-
-            if (marca != "NA")
-            {
-                switch (ensaioAtual)
-                {
-                    case "Bluetooth Low Energy":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11a":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11b":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11g":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11n (20)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11n (40)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11n (80)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ac (20)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ac (40)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ac (80)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (20)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (40)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (80)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (160)":
-                        radical.Potencia_De_Saida(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                }
-            }
-
-        }
-
-        public void Ensaio_Densidade_Espectral_de_Potencia(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = config.GetRef();
-            marca = config.GetMarca();
-
-            if (marca != "NA")
-            {
-                switch (ensaioAtual)
-                {
-                    case "Bluetooth Low Energy":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11a":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11b":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11g":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11n (20)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11n (40)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11n (80)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ac (20)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ac (40)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ac (80)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (20)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "20", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (40)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "40", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (80)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "80", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                    case "802.11ax (160)":
-                        radical.Densidade_Espectral_de_Potencia(valFreq, ip, ensaioAtual, "160", RefLevel, Att, config.GetTPrints(), marca);
-                        break;
-                }
-            }
-
-        }
-
-        public void Ensaio_Separação_de_Canais_de_Salto(string valFreq, string ip, string ensaioAtual, Configurações config)
-        {
-            radical = new AutomacaoN9010A();
-            Att = CarregaAtt();
-            RefLevel = config.GetRef();
-            marca = config.GetMarca();
-            string nomePasta = @"\\A-N9010A-00151\prints\Separacao de Canais de Salto";
-
-            if (marca != "NA")
-            {
-                switch (ensaioAtual)
-                {
-                    case "GFSK":
-
-                        if (!radical.Separação_Entre_Canais_de_Salto(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), 3, marca))
-                        {
-                            MessageBox.Show("Tudo certo ai, chefia?");
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkers(valFreq, ensaioAtual, marca, ip, 3, nomePasta);
-                        }
-
-                        break;
-                    case "PI4 DQPSK":
-                        if (!radical.Separação_Entre_Canais_de_Salto(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), 3, marca))
-                        {
-                            MessageBox.Show("Tudo certo ai, chefia?");
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkers(valFreq, ensaioAtual, marca, ip, 3, nomePasta);
-                        }
-                        break;
-                    case "8DPSK":
-                        if (!radical.Separação_Entre_Canais_de_Salto(valFreq, ip, ensaioAtual, "2", RefLevel, Att, config.GetTPrints(), 3, marca))
-                        {
-                            MessageBox.Show("Tudo certo ai, chefia?");
-                            if (config.GetTPrints())
-                            {
-                                radical.TiraPrint(valFreq, ip, ensaioAtual, config.GetTPrints(), marca, nomePasta);
-                            }
-                            radical.GetMarkers(valFreq, ensaioAtual, marca, ip, 3, nomePasta);
-                        }
-                        break;
-                }
-            }
-
         }
 
         private void BtConfirmar_Click(object sender, EventArgs e)
         {
+            RefLevel = CarregaRefLevel();
+            Att = CarregaAtt();
+            marca = CarregaMarca();
             tl = new TelaLoading();
             config = new Configurações();
             it11 = new Item_11();
@@ -945,47 +377,47 @@ namespace Automacao_N9010A
             it10 = new Item_10();
             jsonString = File.ReadAllText(caminhoJson);
             salva = JsonSerializer.Deserialize<Save>(jsonString);
-            if (ListaTecnologiasWifi.CheckedItems.Count != 0 || ListaTecnologiasBT.CheckedItems.Count != 0)
+            if (GridFreqBt.Rows.Count != 0 || GridFreqWifi.Rows.Count != 0)
             {
-                if (TextBoxFreqC.Text != "")
+                if (LConecta.Text == "CONECTADO")
                 {
-                    if (LConecta.Text == "CONECTADO")
+                    if (GridFreqWifi.Rows.Count != 0 && GridFreqBt.Rows.Count == 0)
                     {
-                        if (ListaTecnologiasWifi.CheckedItems.Count != 0 && ListaTecnologiasBT.CheckedItems.Count == 0)
+                        if (CriaPasta())
                         {
                             tl.Show();
-                            for (int i = 0; i < ListaTecnologiasWifi.CheckedItems.Count; i++)
+                            for (int i = 0; i < GridFreqWifi.Rows.Count; i++)
                             {
-                                MessageBox.Show($"Iniciando o Ensaio do {ListaTecnologiasWifi.CheckedItems[i]}, configure o aparelho");
+                                MessageBox.Show($"Iniciando o Ensaio do {GridFreqWifi.Rows[i].Cells[0].Value} - {GridFreqWifi.Rows[i].Cells[1].Value}, configure o aparelho");
                                 if (salva.EnsaiosItem11[0] == true)
                                 {
-                                    Ensaio_Largura_de_faixa_a_6_dB(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Largura_6dB(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem11[1] == true)
                                 {
-                                    Ensaio_Largura_de_faixa_a_26_dB(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Largura_26dB(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem11[2] == true)
                                 {
-                                    Ensaio_Potencia_de_Pico_Maxima(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Potência_de_pico_máxima(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem11[3] == true)
                                 {
-                                    Ensaio_Valor_médio_da_potência_máxima_de_saída(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Valor_médio_da_potência_máxima_de_saída(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem11[4] == true)
                                 {
-                                    Ensaio_pico_da_densidade_de_potência(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Pico_da_densidade_de_potência(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem11[5] == true)
                                 {
-                                    Ensaio_Valor_Medio_Densidade_Espectral(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Valor_médio_da_densidade_espectral_de_potência(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem11[6] == true)
                                 {
@@ -995,33 +427,33 @@ namespace Automacao_N9010A
                                         {
                                             case 0:
                                                 MessageBox.Show("Selecione no aparelho a frequencia Inicial");
-                                                Ensaio_Espurios(salva.FreqEspuriosWifi[0], salva.FreqEspuriosWifi[1], TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[j].ToString(), config);
+                                                radical.Espurios(salva.FreqEspuriosWifi[0], salva.FreqEspuriosWifi[1], TextBoxIP.Text, GridFreqWifi.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[j].Cells[3].Value, marca, GridFreqWifi.Rows[j].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 break;
                                             case 1:
-                                                Ensaio_Espurios(Convert.ToString(Convert.ToInt32(salva.FreqEspuriosWifi[1]) - 100), salva.FreqEspuriosWifi[1], TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[j].ToString(), config);
+                                                radical.Espurios(Convert.ToString(Convert.ToInt32(salva.FreqEspuriosWifi[1]) - 100), salva.FreqEspuriosWifi[1], TextBoxIP.Text, GridFreqWifi.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[j].Cells[3].Value, marca, GridFreqWifi.Rows[j].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 break;
                                             case 2:
                                                 MessageBox.Show("Selecione no aparelho a frequencia final");
-                                                Ensaio_Espurios(salva.FreqEspuriosWifi[2], Convert.ToString(100 + Convert.ToInt32(salva.FreqEspuriosWifi[2])), TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[j].ToString(), config);
+                                                radical.Espurios(salva.FreqEspuriosWifi[2], Convert.ToString(100 + Convert.ToInt32(salva.FreqEspuriosWifi[2])), TextBoxIP.Text, GridFreqWifi.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[j].Cells[3].Value, marca, GridFreqWifi.Rows[j].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 break;
                                             case 3:
-                                                Ensaio_Espurios(salva.FreqEspuriosWifi[2], salva.FreqEspuriosWifi[3], TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[j].ToString(), config);
+                                                radical.Espurios(salva.FreqEspuriosWifi[2], salva.FreqEspuriosWifi[3], TextBoxIP.Text, GridFreqWifi.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[j].Cells[3].Value, marca, GridFreqWifi.Rows[j].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 MessageBox.Show("Terminando ensaio de Espurios, volte pra frequencia de ensaio");
                                                 break;
 
                                         }
                                     }
-                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    tl.SetValorPB((100 / it11.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem12[0] == true)
                                 {
-                                    Ensaio_Potencia_de_Saida(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it12.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Potencia_De_Saida(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it12.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem12[1] == true)
                                 {
-                                    Ensaio_Densidade_Espectral_de_Potencia(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[i].ToString(), config);
-                                    tl.SetValorPB((100 / it12.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    radical.Densidade_Espectral_de_Potencia(GridFreqWifi.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqWifi.Rows[i].Cells[1].Value.ToString(), GridFreqWifi.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[i].Cells[3].Value, marca, nomePasta);
+                                    tl.SetValorPB((100 / it12.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                                 if (salva.EnsaiosItem12[2] == true)
                                 {
@@ -1030,44 +462,52 @@ namespace Automacao_N9010A
                                         switch (x)
                                         {
                                             case 0:
-                                                Ensaio_Espurios(salva.FreqEspuriosWifi[0], salva.FreqEspuriosWifi[1], TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[x].ToString(), config);
+                                                radical.Espurios(salva.FreqEspuriosWifi[0], salva.FreqEspuriosWifi[1], TextBoxIP.Text, GridFreqWifi.Rows[x].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[x].Cells[3].Value, marca, GridFreqWifi.Rows[x].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 break;
                                             case 1:
-                                                Ensaio_Espurios(Convert.ToString(Convert.ToInt32(salva.FreqEspuriosWifi[1]) - 100), salva.FreqEspuriosWifi[1], TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[x].ToString(), config);
+                                                radical.Espurios(Convert.ToString(Convert.ToInt32(salva.FreqEspuriosWifi[1]) - 100), salva.FreqEspuriosWifi[1], TextBoxIP.Text, GridFreqWifi.Rows[x].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[x].Cells[3].Value, marca, GridFreqWifi.Rows[x].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 break;
                                             case 2:
-                                                Ensaio_Espurios(salva.FreqEspuriosWifi[2], Convert.ToString(100 + Convert.ToInt32(salva.FreqEspuriosWifi[2])), TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[x].ToString(), config);
+                                                radical.Espurios(salva.FreqEspuriosWifi[2], Convert.ToString(100 + Convert.ToInt32(salva.FreqEspuriosWifi[2])), TextBoxIP.Text, GridFreqWifi.Rows[x].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[x].Cells[3].Value, marca, GridFreqWifi.Rows[x].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 break;
                                             case 3:
-                                                Ensaio_Espurios(salva.FreqEspuriosWifi[2], salva.FreqEspuriosWifi[3], TextBoxIP.Text, ListaTecnologiasWifi.CheckedItems[x].ToString(), config);
+                                                radical.Espurios(salva.FreqEspuriosWifi[2], salva.FreqEspuriosWifi[3], TextBoxIP.Text, GridFreqWifi.Rows[x].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqWifi.Rows[x].Cells[3].Value, marca, GridFreqWifi.Rows[x].Cells[2].Value.ToString(), configFreqWifi, nomePasta);
                                                 break;
 
                                         }
                                     }
-                                    tl.SetValorPB((100 / it12.GetQuantidadeEnsaios()) / ListaTecnologiasWifi.CheckedItems.Count);
+                                    tl.SetValorPB((100 / it12.GetQuantidadeEnsaios()) / GridFreqWifi.Rows.Count);
                                 }
                             }
                             tl.Close();
                             TocaRatinho();
+                            CriaInfoMetrologista();
                         }
                         else
                         {
-                            if (ListaTecnologiasWifi.CheckedItems.Count == 0 && ListaTecnologiasBT.CheckedItems.Count != 0)
+                            MessageBox.Show("Insira um caminho válido");
+                        }
+                            
+                    }
+                    else
+                    {
+                        if (GridFreqWifi.Rows.Count == 0 && GridFreqBt.Rows.Count != 0)
+                        {
+                            if (CriaPasta())
                             {
-
                                 tl.Show();
-                                for (int i = 0; i < ListaTecnologiasBT.CheckedItems.Count; i++)
+                                for (int i = 0; i < GridFreqBt.Rows.Count; i++)
                                 {
-                                    MessageBox.Show($"Iniciando o Ensaio do {ListaTecnologiasBT.CheckedItems[i]}, configure o aparelho");
+                                    MessageBox.Show($"Iniciando o Ensaio do {GridFreqBt.Rows[i].Cells[0].Value} - {GridFreqBt.Rows[i].Cells[1].Value}, configure o aparelho");
                                     if (salva.EnsaiosItem10[0] == true)
                                     {
-                                        radical.Largura_20dB(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[i].ToString(), "2", CarregaRefLevel(), CarregaAtt(), config.GetTPrints(), CarregaMarca());
-                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / ListaTecnologiasBT.CheckedItems.Count);
+                                        radical.Largura_20dB(GridFreqBt.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), GridFreqBt.Rows[i].Cells[2].Value.ToString(), CarregaRefLevel(), CarregaAtt(), (bool)GridFreqBt.Rows[i].Cells[3].Value, CarregaMarca(), nomePasta);
+                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / GridFreqBt.Rows.Count);
                                     }
                                     if (salva.EnsaiosItem10[1] == true)
                                     {
-                                        Ensaio_Potencia_de_Pico_Maxima(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[i].ToString(), config);
-                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / ListaTecnologiasBT.CheckedItems.Count);
+                                        radical.Potência_de_pico_máxima(GridFreqBt.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), GridFreqBt.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[i].Cells[3].Value, marca, nomePasta);
+                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / GridFreqBt.Rows.Count);
                                     }
                                     if (salva.EnsaiosItem10[2] == true)
                                     {
@@ -1077,118 +517,123 @@ namespace Automacao_N9010A
                                             {
                                                 case 0:
                                                     MessageBox.Show("Selecione no aparelho a frequencia Inicial");
-                                                    Ensaio_Espurios(salva.FreqEspuriosBT[0], salva.FreqEspuriosBT[1], TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[j].ToString(), config);
+                                                    radical.Espurios(salva.FreqEspuriosBT[0], salva.FreqEspuriosBT[1], TextBoxIP.Text, GridFreqBt.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[j].Cells[3].Value, marca, GridFreqBt.Rows[j].Cells[2].Value.ToString(), configFreqBt, nomePasta);
                                                     break;
                                                 case 1:
-                                                    Ensaio_Espurios(Convert.ToString(Convert.ToInt32(salva.FreqEspuriosBT[1]) - 100), salva.FreqEspuriosBT[1], TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[j].ToString(), config);
+                                                    radical.Espurios(Convert.ToString(Convert.ToInt32(salva.FreqEspuriosBT[1]) - 100), salva.FreqEspuriosBT[1], TextBoxIP.Text, GridFreqBt.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[j].Cells[3].Value, marca, GridFreqBt.Rows[j].Cells[2].Value.ToString(), configFreqBt, nomePasta);
                                                     break;
                                                 case 2:
                                                     MessageBox.Show("Selecione no aparelho a frequencia final");
-                                                    Ensaio_Espurios(salva.FreqEspuriosBT[2], Convert.ToString(100 + Convert.ToInt32(salva.FreqEspuriosBT[2])), TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[j].ToString(), config);
+                                                    radical.Espurios(salva.FreqEspuriosBT[2], Convert.ToString(100 + Convert.ToInt32(salva.FreqEspuriosBT[2])), TextBoxIP.Text, GridFreqBt.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[j].Cells[3].Value, marca, GridFreqBt.Rows[j].Cells[2].Value.ToString(), configFreqBt, nomePasta);
                                                     break;
                                                 case 3:
-                                                    Ensaio_Espurios(salva.FreqEspuriosBT[2], salva.FreqEspuriosBT[3], TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[j].ToString(), config);
+                                                    radical.Espurios(salva.FreqEspuriosBT[2], salva.FreqEspuriosBT[3], TextBoxIP.Text, GridFreqBt.Rows[j].Cells[1].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[j].Cells[3].Value, marca, GridFreqBt.Rows[j].Cells[2].Value.ToString(), configFreqBt, nomePasta);
                                                     MessageBox.Show("Terminando ensaio de Espurios, volte pra frequencia de ensaio");
                                                     break;
                                             }
                                         }
-                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / ListaTecnologiasBT.CheckedItems.Count);
+                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / GridFreqBt.Rows.Count);
                                     }
                                     if (salva.EnsaiosItem10[3] == true)
                                     {
                                         MessageBox.Show("Iniciando ensaio de separação de canais de salto, coloque o dispositivo em modo de salto");
-                                        Ensaio_Separação_de_Canais_de_Salto(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[i].ToString(), config);
-                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / ListaTecnologiasBT.CheckedItems.Count);
+                                        if (!radical.Separação_Entre_Canais_de_Salto(GridFreqBt.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), GridFreqBt.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[i].Cells[3].Value, 3, marca))
+                                        {
+                                            MessageBox.Show("Tudo certo ai, chefia?");
+                                            if ((bool)GridFreqBt.Rows[i].Cells[3].Value)
+                                            {
+                                                radical.TiraPrint(GridFreqBt.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), (bool)GridFreqBt.Rows[i].Cells[3].Value, marca, nomePasta, "Separacao Canais de Salto");
+                                            }
+                                            radical.GetMarkers(GridFreqBt.Rows[i].Cells[0].Value.ToString(), GridFreqBt.Rows[i].Cells[1].Value.ToString(), marca, TextBoxIP.Text, 3, nomePasta);
+                                        }
+                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / GridFreqBt.Rows.Count);
                                     }
                                     if (salva.EnsaiosItem10[4] == true)
                                     {
                                         MessageBox.Show("Iniciando Ensaio de numero de Canais de Salto, coloque o dispositivo em modo salto!");
-                                        Ensaio_Numero_de_Canais(salva.FreqNumeroCanaisDeSalto[0], salva.FreqNumeroCanaisDeSalto[2], salva.FreqNumeroCanaisDeSalto[1], TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[i].ToString(), config);
-                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / ListaTecnologiasBT.CheckedItems.Count);
+                                        radical.Numero_De_Frequencia_de_Salto(salva.FreqNumeroCanaisDeSalto[0], salva.FreqNumeroCanaisDeSalto[1], TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), GridFreqBt.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[i].Cells[3].Value, marca);
+                                        MessageBox.Show("Tudo Certo ai, chefia?");
+                                        if ((bool)GridFreqBt.Rows[i].Cells[3].Value)
+                                        {
+                                            radical.TiraPrint(salva.FreqNumeroCanaisDeSalto[0] + " " + salva.FreqNumeroCanaisDeSalto[1], TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), (bool)GridFreqBt.Rows[i].Cells[3].Value, marca, nomePasta, "numero de Canais de Salto");
+                                        }
+                                        radical.Numero_De_Frequencia_de_Salto(salva.FreqNumeroCanaisDeSalto[1], salva.FreqNumeroCanaisDeSalto[2], TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), GridFreqBt.Rows[i].Cells[2].Value.ToString(), RefLevel, Att, (bool)GridFreqBt.Rows[i].Cells[3].Value, marca);
+                                        MessageBox.Show("Tudo Certo ai, chefia?");
+                                        if ((bool)GridFreqBt.Rows[i].Cells[3].Value)
+                                        {
+                                            radical.TiraPrint(salva.FreqNumeroCanaisDeSalto[1] + " " + salva.FreqNumeroCanaisDeSalto[2], TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), (bool)GridFreqBt.Rows[i].Cells[3].Value, marca, nomePasta, "numero de Canais de Salto");
+                                        }
+                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / GridFreqBt.Rows.Count);
                                     }
                                     if (salva.EnsaiosItem10[5] == true)
                                     {
                                         MessageBox.Show("Iniciando ensaio de numero de ocupações, coloque o dispositivo em modo de salto");
-                                        Ensaio_Numero_de_Ocupações(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[i].ToString(), config);
-                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / ListaTecnologiasBT.CheckedItems.Count);
+                                        Ensaio_Numero_de_Ocupações(GridFreqBt.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), (bool)GridFreqBt.Rows[i].Cells[3].Value);
+                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / GridFreqBt.Rows.Count);
 
                                     }
                                     if (salva.EnsaiosItem10[6] == true)
                                     {
                                         MessageBox.Show("Iniciando ensaio de Tempo de Ocupação, coloque o dispositivo em modo de salto");
-                                        Ensaio_Tempo_de_Ocupação(TextBoxFreqC.Text, TextBoxIP.Text, ListaTecnologiasBT.CheckedItems[i].ToString(), config);
-                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / ListaTecnologiasBT.CheckedItems.Count);
-                                    }
+                                        Ensaio_Tempo_de_Ocupação(GridFreqBt.Rows[i].Cells[0].Value.ToString(), TextBoxIP.Text, GridFreqBt.Rows[i].Cells[1].Value.ToString(), (bool)GridFreqBt.Rows[i].Cells[3].Value);
+                                        tl.SetValorPB((100 / it10.GetQuantidadeEnsaios()) / GridFreqBt.Rows.Count);
+                                    }                                   
                                 }
                                 tl.Close();
                                 TocaRatinho();
+                                CriaInfoMetrologista();
                             }
                             else
                             {
-                                MessageBox.Show("Selecione Tecnologia de Apenas um Tipo");
+                                MessageBox.Show("Insira um caminho válido");
                             }
                         }
-
+                        else
+                        {
+                            MessageBox.Show("Selecione Tecnologia de Apenas um Tipo");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Nenhuma Maquina Conectada");
-                    }
-
                 }
                 else
                 {
-                    MessageBox.Show("Selecione uma Frequencia");
+                    MessageBox.Show("Máquina não conectada");
                 }
             }
             else
             {
-                MessageBox.Show("Selecione uma Tecnologia");
+                MessageBox.Show("Selecione alguma frequência");
             }
 
 
+        }
+
+        private void CriaInfoMetrologista()
+        {
+            if (!Directory.Exists(nomePasta))
+            {
+                Directory.CreateDirectory(nomePasta);
+                var _ = nomePasta + @"\InfoMetrologista.csv";
+                var fs = File.Create(_);
+                fs.Close();
+                File.AppendAllText(_, nomeEnsaio + ",");
+                File.AppendAllText(_, nomeMetrologista + ";");
+                File.AppendAllText(_, DateTime.Now.ToString("g") + ";");
+            }
+            else
+            {
+                var _ = nomePasta + @"\InfoMetrologista.csv";
+                var fs = File.Create(_);
+                fs.Close();
+                File.AppendAllText(_, nomeEnsaio + ",");
+                File.AppendAllText(_, nomeMetrologista + ";");
+                File.AppendAllText(_, DateTime.Now.ToString("g") + ";");
+            }
         }
 
         private static void TocaRatinho()
         {
             //SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\80400197\Documents\GitHub\Automacao-N9010A\Automacao N9010A\Ratinho.wav");
             //simpleSound.Play();
-        }
-        private void BtSelTodos_Click(object sender, EventArgs e)
-        {
-            if (CBSelTipo.Text == "Wifi")
-            {
-                for (int i = 0; i < ListaTecnologiasWifi.Items.Count; i++)
-                {
-                    ListaTecnologiasWifi.SetItemChecked(i, true);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < ListaTecnologiasBT.Items.Count; i++)
-                {
-                    ListaTecnologiasBT.SetItemChecked(i, true);
-                }
-            }
-
-        }
-
-        private void BtLimpar_Click(object sender, EventArgs e)
-        {
-            if (CBSelTipo.Text == "Wifi")
-            {
-                for (int i = 0; i < ListaTecnologiasWifi.Items.Count; i++)
-                {
-                    ListaTecnologiasWifi.SetItemChecked(i, false);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < ListaTecnologiasBT.Items.Count; i++)
-                {
-                    ListaTecnologiasBT.SetItemChecked(i, false);
-                }
-            }
         }
 
         private void BtItem10_Click(object sender, EventArgs e)
@@ -1274,19 +719,51 @@ namespace Automacao_N9010A
             SalvaTipo();
             if (CBSelTipo.SelectedItem.Equals("Wifi"))
             {
-                ListaTecnologiasBT.Visible = false;
-                ListaTecnologiasWifi.Visible = true;
+                GridFreqWifi.Visible = true;
+                GridFreqBt.Visible = false;
             }
             else
             {
-                ListaTecnologiasBT.Visible = true;
-                ListaTecnologiasWifi.Visible = false;
+                GridFreqWifi.Visible = false;
+                GridFreqBt.Visible = true;
             }
         }
 
-        private void GrupoDasNormas_Enter(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.InitialDirectory = "C:\\Users";
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                nomePasta = dialog.FileName;
+                LCaminhoPasta.Text = dialog.FileName;
+            }
+        }
 
+        private void TbNomeEnsaio_TextChanged(object sender, EventArgs e)
+        {
+            nomeEnsaio = TbNomeEnsaio.Text;
+        }
+
+        private void TbNomeMetrologista_TextChanged(object sender, EventArgs e)
+        {
+            nomeMetrologista = TbNomeMetrologista.Text;
+        }
+
+        private void BtAddFreq_Click(object sender, EventArgs e)
+        {
+            if (CBSelTipo.SelectedItem.Equals("Wifi"))
+            {
+                ;
+                GridFreqWifi.Rows.Add() ;
+                GridFreqWifi.Rows[0].Cells[3].Value = false;
+            }
+            else
+            {
+                GridFreqBt.Rows.Add();
+                GridFreqBt.Rows[0].Cells[3].Value = false;
+            }
         }
     }
     public class Save

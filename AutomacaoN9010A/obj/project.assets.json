@@ -5,14 +5,10 @@
       "RsInstrument/1.15.0": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.1/RsInstrument.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.1/RsInstrument.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/RsInstrument.dll": {
-            "related": ".xml"
-          }
+          "lib/netcoreapp3.1/RsInstrument.dll": {}
         }
       },
       "KeySightLib/1.0.0": {
@@ -92,23 +88,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\": {},
+    "C:\\Users\\10088365\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
+      "projectUniqueName": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
       "projectName": "AutomacaoN9010A",
-      "projectPath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
-      "packagesPath": "C:\\Users\\Matheus Timmers\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\obj\\",
+      "projectPath": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
+      "packagesPath": "C:\\Users\\10088365\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Matheus Timmers\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\10088365\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -117,18 +113,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\KeySigthLLib\\KeySightLib.csproj": {
-              "projectPath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\KeySigthLLib\\KeySightLib.csproj"
+            "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\KeySigthLLib\\KeySightLib.csproj": {
+              "projectPath": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\KeySigthLLib\\KeySightLib.csproj"
             },
-            "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\RodheLib\\RodheLib.csproj": {
-              "projectPath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\RodheLib\\RodheLib.csproj"
+            "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\RodheLib\\RodheLib.csproj": {
+              "projectPath": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\RodheLib\\RodheLib.csproj"
             }
           }
         }
@@ -154,31 +149,16 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

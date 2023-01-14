@@ -18,24 +18,35 @@ namespace MatheusProductions.RodheLib
 
             if (tPrints)
             {
+                instr.WriteString(@$"HCOP:CMAP:DEF 4");
                 if (!System.IO.File.Exists(nomePasta))
                 {
                     // Combina o nome do arquivo ao caminho onde ta os prints
                     CriaPasta(nomePasta);
-                    nomePasta = nomePasta + @"\" + nomePrint;
                     instr.WriteString(@$"HCOP:DEV:LANG {tipoImagem}"); // Faça a captura de tela
                     instr.WriteString(@$"HCOP:DEST MMEM"); // Faça a captura de tela
-                    instr.WriteString(@$"MMEM:NAME '{nomePasta}'"); // Faça a captura de tela
+                    instr.WriteString(@$"MMEM:NAME 'C:\\prints.png'"); // Faça a captura de tela
                     instr.WriteString(@$"HCOP"); // Faça a captura de tela
+                    nomePasta = nomePasta + @"\" + nomePrint + ".png";
+                    instr.WriteString(@$"MMEM:DATA? 'C:\\prints.png'"); // Faça a captura de tela
 
+                    var fs = File.Create(nomePasta);
+                    fs.Close();
+                    File.WriteAllBytes(nomePasta, (byte[])instr.ReadIEEEBlock(IEEEBinaryType.BinaryType_UI1, true));
                 }
                 else
                 {
                     nomePasta = nomePasta + @"\" + nomePrint;
                     instr.WriteString(@$"HCOP:DEV:LANG {tipoImagem}"); // Faça a captura de tela
                     instr.WriteString(@$"HCOP:DEST MMEM"); // Faça a captura de tela
-                    instr.WriteString(@$"MMEM:NAME '{nomePasta}'"); // Faça a captura de tela
+                    instr.WriteString(@$"MMEM:NAME 'C:\\prints.png'"); // Faça a captura de tela
                     instr.WriteString(@$"HCOP"); // Faça a captura de tela
+
+                    instr.WriteString(@$"MMEM:DATA? 'C:\\prints.png'"); // Faça a captura de tela
+
+                    var fs = File.Create(nomePasta);
+                    fs.Close();
+                    File.WriteAllBytes(nomePasta, (byte[])instr.ReadIEEEBlock(IEEEBinaryType.BinaryType_UI1, true));
                 }
             }
 
@@ -43,50 +54,14 @@ namespace MatheusProductions.RodheLib
 
         public static void CriaPasta(string nomePasta, string nomeSubPasta = "")
         {
-            //---------------------------------------------------------------
-            //Cria Uma pasta para salvar os valores
-            //---------------------------------------------------------------
-
-            
-            // Adicionando o nome Valores do Marker dentro da variavel Nome Pasta
-                using (NetworkShareAccesser.Access("ESR26-101761", "instrument", "894129"))
-                {
-                    nomePasta = System.IO.Path.Combine(nomePasta, nomeSubPasta);
-
-                    //Cria pasta
-                    System.IO.Directory.CreateDirectory(nomePasta);
-                }
-            // Verifica o Caminho
+            nomePasta = System.IO.Path.Combine(nomePasta, nomeSubPasta);
+            System.IO.Directory.CreateDirectory(nomePasta);
         }
 
         public static FileStream CriaArquivo(string nomeArquivo, string nomePasta = "")
         {
-            using (NetworkShareAccesser.Access("ESR26-101761", "instrument", "894129"))
-            {
-                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
-            }
+            nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
             return File.Create(nomePasta);
-        }
-
-        public static bool Inicializacao(FormattedIO488 instr, ResourceManager rm, string ip)
-        {
-            try // Criar um Try-catch separado para inicialização impede o acesso a objetos não inicializados
-            {
-                //-----------------------------------------------------------
-                // Inicialização:
-                //-----------------------------------------------------------
-                // Ajuste a string de recursos VISA para se adequar ao seu instrumento 
-                instr.IO = (IMessage)rm.Open(ip);
-                instr.IO.Timeout = 3000; // Tempo limite para operações de leitura VISA
-                return true;
-            }
-            catch (RsInstrumentException e)
-            {
-                Console.WriteLine($"Erro ao inicializar a sessão do instrumento:\n{e.Message}");
-                Console.WriteLine("Pressione qualquer tecla para sair.");
-                Console.ReadKey();
-                return false;
-            }
         }
 
         public static void ConfiguraInstr(FormattedIO488 instr, string freqC, string unidadeY, string att, string refL, string span, string rbw, string vbw, string sweepAuto, string trace, string detector, string modo)
@@ -184,31 +159,27 @@ namespace MatheusProductions.RodheLib
 
         public static void SalvaMarkers(string nomeArquivo, string nomePasta, double markerX, double markerY, string freqC, string nome)
         {
-            using (NetworkShareAccesser.Access("ESR26-101761", "instrument", "894129"))
+            if (!System.IO.File.Exists(nomePasta + @"\" + nomeArquivo))
             {
+                // Combina o nome do arquivo ao caminho onde ta os prints
+                CriaPasta(nomePasta);
+                //Criando o arquivo e adicionando os Valores
+                System.IO.FileStream fs = CriaArquivo(nomeArquivo, nomePasta);
+                fs.Close();
 
-                if (!System.IO.File.Exists(nomePasta + @"\" + nomeArquivo))
-                {
-                    // Combina o nome do arquivo ao caminho onde ta os prints
-                    CriaPasta(nomePasta);
-                    //Criando o arquivo e adicionando os Valores
-                    System.IO.FileStream fs = CriaArquivo(nomeArquivo, nomePasta);
-                    fs.Close();
-
-                    nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
-                    File.AppendAllText(nomePasta, nome.ToString() + ";");
-                    File.AppendAllText(nomePasta, freqC.ToString() + ";");
-                    File.AppendAllText(nomePasta, markerX.ToString() + ";");
-                    File.AppendAllText(nomePasta, markerY.ToString() + "\n");
-                }
-                else
-                {
-                    nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
-                    File.AppendAllText(nomePasta, nome.ToString() + ";");
-                    File.AppendAllText(nomePasta, freqC.ToString() + ";");
-                    File.AppendAllText(nomePasta, markerX.ToString() + ";");
-                    File.AppendAllText(nomePasta, markerY.ToString() + "\n");
-                }
+                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
+                File.AppendAllText(nomePasta, nome.ToString() + ";");
+                File.AppendAllText(nomePasta, freqC.ToString() + ";");
+                File.AppendAllText(nomePasta, markerX.ToString() + ";");
+                File.AppendAllText(nomePasta, markerY.ToString() + "\n");
+            }
+            else
+            {
+                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
+                File.AppendAllText(nomePasta, nome.ToString() + ";");
+                File.AppendAllText(nomePasta, freqC.ToString() + ";");
+                File.AppendAllText(nomePasta, markerX.ToString() + ";");
+                File.AppendAllText(nomePasta, markerY.ToString() + "\n");
             }
         }
 
@@ -271,59 +242,53 @@ namespace MatheusProductions.RodheLib
 
         public static void SalvaValores(string nomeArquivo, string nomePasta, string valor, string freqC, string nome)
         {
-            using (NetworkShareAccesser.Access("ESR26-101761", "instrument", "894129"))
+            if (!System.IO.File.Exists(nomePasta + @"\" + nomeArquivo))
             {
-                if (!System.IO.File.Exists(nomePasta + @"\" + nomeArquivo))
-                {
-                    // Combina o nome do arquivo ao caminho onde ta os prints
-                    CriaPasta(nomePasta);
-                    //Criando o arquivo e adicionando os Valores
-                    System.IO.FileStream fs = CriaArquivo(nomeArquivo, nomePasta);
-                    fs.Close();
+                // Combina o nome do arquivo ao caminho onde ta os prints
+                CriaPasta(nomePasta);
+                //Criando o arquivo e adicionando os Valores
+                System.IO.FileStream fs = CriaArquivo(nomeArquivo, nomePasta);
+                fs.Close();
 
-                    nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
+                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
 
-                    File.AppendAllText(nomePasta, nome.ToString() + ";");
-                    File.AppendAllText(nomePasta, freqC.ToString() + ";");
-                    File.AppendAllText(nomePasta, valor.ToString() + "\n");
+                File.AppendAllText(nomePasta, nome.ToString() + ";");
+                File.AppendAllText(nomePasta, freqC.ToString() + ";");
+                File.AppendAllText(nomePasta, valor.ToString() + "\n");
 
-                }
-                else
-                {
-                    nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
-                    File.AppendAllText(nomePasta, nome.ToString() + ";");
-                    File.AppendAllText(nomePasta, freqC.ToString() + ";");
-                    File.AppendAllText(nomePasta, valor.ToString() + "\n");
-                }
+            }
+            else
+            {
+                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
+                File.AppendAllText(nomePasta, nome.ToString() + ";");
+                File.AppendAllText(nomePasta, freqC.ToString() + ";");
+                File.AppendAllText(nomePasta, valor.ToString() + "\n");
             }
         }
 
         public static void SalvaValores(string nomeArquivo, string nomePasta, double valor, double valor2, string freqC, string nome)
         {
-            using (NetworkShareAccesser.Access("ESR26-101761", "instrument", "894129"))
+            if (!System.IO.File.Exists(nomePasta + @"\" + nomeArquivo))
             {
-                if (!System.IO.File.Exists(nomePasta + @"\" + nomeArquivo))
-                {
-                    CriaPasta(nomePasta);
-                    //Criando o arquivo e adicionando os Valores
-                    System.IO.FileStream fs = CriaArquivo(nomeArquivo, nomePasta);
-                    fs.Close();
+                CriaPasta(nomePasta);
+                //Criando o arquivo e adicionando os Valores
+                System.IO.FileStream fs = CriaArquivo(nomeArquivo, nomePasta);
+                fs.Close();
 
-                    nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
+                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
 
-                    File.AppendAllText(nomePasta, nome.ToString() + ";");
-                    File.AppendAllText(nomePasta, freqC.ToString() + ";");
-                    File.AppendAllText(nomePasta, valor.ToString() + ";");
-                    File.AppendAllText(nomePasta, valor2.ToString() + "\n");
-                }
-                else
-                {
-                    File.AppendAllText(nomePasta, nome.ToString() + ";");
-                    nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
-                    File.AppendAllText(nomePasta, freqC.ToString() + ";");
-                    File.AppendAllText(nomePasta, valor.ToString() + ";");
-                    File.AppendAllText(nomePasta, valor2.ToString() + "\n");
-                }
+                File.AppendAllText(nomePasta, nome.ToString() + ";");
+                File.AppendAllText(nomePasta, freqC.ToString() + ";");
+                File.AppendAllText(nomePasta, valor.ToString() + ";");
+                File.AppendAllText(nomePasta, valor2.ToString() + "\n");
+            }
+            else
+            {
+                File.AppendAllText(nomePasta, nome.ToString() + ";");
+                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
+                File.AppendAllText(nomePasta, freqC.ToString() + ";");
+                File.AppendAllText(nomePasta, valor.ToString() + ";");
+                File.AppendAllText(nomePasta, valor2.ToString() + "\n");
             }
         }
 
