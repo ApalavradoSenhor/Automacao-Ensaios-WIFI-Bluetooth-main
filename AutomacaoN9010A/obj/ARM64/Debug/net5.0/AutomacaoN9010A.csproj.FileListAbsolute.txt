@@ -73,3 +73,28 @@ C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios
 C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\refint\AutomacaoN9010A.dll
 C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.pdb
 C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\ref\AutomacaoN9010A.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\AutomacaoN9010A.deps.json
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\AutomacaoN9010A.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\AutomacaoN9010A.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.Driver.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.Scope.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.Visa.Interop.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\KeySightLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\RodheLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.ConfigServer.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\KeySightLib.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\RodheLib.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.Driver.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.Scope.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.Visa.Interop.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\bin\ARM64\Debug\net5.0\Ivi.ConfigServer.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.csproj.AssemblyReference.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.AssemblyInfoInputs.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.AssemblyInfo.cs
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.csproj.CoreCompileInputs.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.csproj.CopyComplete
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\refint\AutomacaoN9010A.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\AutomacaoN9010A.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\AutomacaoN9010A\obj\ARM64\Debug\net5.0\ref\AutomacaoN9010A.dll

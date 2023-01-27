@@ -61,3 +61,24 @@ C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios
 C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\refint\KeySightLib.dll
 C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.pdb
 C:\Users\Paulo\Downloads\Automacao-Ensaios-WIFI-Bluetooth-main\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\ref\KeySightLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\KeySightLib.deps.json
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\KeySightLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\KeySightLib.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.Driver.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.Scope.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.Visa.Interop.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.ConfigServer.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.Driver.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.Scope.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.Visa.Interop.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\bin\ARM64\Debug\net5.0\Ivi.ConfigServer.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.csproj.AssemblyReference.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.AssemblyInfoInputs.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.AssemblyInfo.cs
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.csproj.CoreCompileInputs.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.csproj.CopyComplete
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\refint\KeySightLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\KeySightLib.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\KeySigthLLib\obj\ARM64\Debug\net5.0\ref\KeySightLib.dll

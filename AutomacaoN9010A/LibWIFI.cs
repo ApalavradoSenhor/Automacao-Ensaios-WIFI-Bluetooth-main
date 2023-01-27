@@ -187,7 +187,7 @@ namespace MatheusProductions.AutomacaoN9010A
 
 
 
-        public bool Separação_Entre_Canais_de_Salto(string valFreq, string ip, string nome, string largura_Banda, string RefLevel, string Att, bool tPrints, int numMarkers, string marca)
+        public bool Separação_Entre_Canais_de_Salto(string valFreq, string ip, string largura_Banda, string RefLevel, string Att, string marca)
         {
             ConectaIP(ip);
             try
@@ -326,7 +326,7 @@ namespace MatheusProductions.AutomacaoN9010A
             }
         }
 
-        public void Numero_De_Frequencia_de_Salto(string valFreqI, string valFreqF,  string ip, string nome, string largura_Banda, string RefLevel, string Att, bool tPrints, string marca)
+        public void Numero_De_Frequencia_de_Salto(string valFreqI, string valFreqF,  string ip, string RefLevel, string Att, string marca)
         {
             ConectaIP(ip);
             try
@@ -422,7 +422,7 @@ namespace MatheusProductions.AutomacaoN9010A
             }
         }
 
-        public bool NumeroDeOcupacoes(string valFreq, string ip, string nome, string largura_Banda, string RefLevel, string Att, string marca, ref int numMarkers, string nomePasta)
+        public bool NumeroDeOcupacoes(string valFreq, string ip, string largura_Banda, string RefLevel, string Att, string marca, ref int numMarkers, string nomePasta)
         {
             int cont = 0;
             ConectaIP(ip);
@@ -445,7 +445,7 @@ namespace MatheusProductions.AutomacaoN9010A
                     }
                     numMarkers = cont;
                     instr.WriteString("INIT:CONT OFF");
-                    SalvaNumMarkers(numMarkers, valFreq, nomePasta, nome, "Numero_de_Ocupacoes.csv");
+                    SalvaNumMarkers(numMarkers, valFreq, nomePasta, "Numero_de_Ocupacoes.csv");
                     return true;
                 }
                 else
@@ -464,7 +464,7 @@ namespace MatheusProductions.AutomacaoN9010A
                         numMarkers = Rodhe.ContaMarker(instr);
                     }
                     instr.WriteString("INIT:CONT OFF");
-                    SalvaNumMarkers(numMarkers, valFreq, nomePasta,nome , "Numero_de_Ocupacoes");
+                    SalvaNumMarkers(numMarkers, valFreq, nomePasta, "Numero_de_Ocupacoes");
                     return true;
                 }
             }
@@ -474,7 +474,7 @@ namespace MatheusProductions.AutomacaoN9010A
             }
         }
 
-        private void SalvaNumMarkers(int count, string freqC, string nomePasta, string nomeArquivo, string nomeSubPasta = "")
+        private static void SalvaNumMarkers(int count, string freqC, string nomePasta, string nomeArquivo)
         {
             var _ = nomePasta + @"\" + "Numero_de_Ocupacoes" + nomeArquivo + ".csv";
             if (!System.IO.File.Exists(nomePasta + @"\" + "Numero_de_Ocupacoes" + nomeArquivo + ".csv"))
@@ -488,7 +488,6 @@ namespace MatheusProductions.AutomacaoN9010A
             }
             else
             {
-                nomePasta = System.IO.Path.Combine(nomePasta, nomeArquivo);
                 File.AppendAllText(_, freqC.ToString() + ";");
                 File.AppendAllText(_, "Nmr de ocupacoes" + ";");
                 File.AppendAllText(_, count + "\n");
@@ -771,7 +770,7 @@ namespace MatheusProductions.AutomacaoN9010A
             }
         }
 
-        public void Espurios(string freqI, string freqF, string ip, string nome, string RefLevel, string Att, bool tPrints, string marca,string largura, string configFreq, string nomePasta)
+        public void Espurios(string freqI, string freqF, string ip, string nome, string RefLevel, string Att, bool tPrints, string marca, string nomePasta)
         {
             ConectaIP(ip);
             try

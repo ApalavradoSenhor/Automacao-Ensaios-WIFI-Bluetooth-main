@@ -134,3 +134,25 @@ C:\Users\10088365\Documents\GitHub\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLi
 C:\Users\10088365\Documents\GitHub\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\refint\RodheLib.dll
 C:\Users\10088365\Documents\GitHub\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.pdb
 C:\Users\10088365\Documents\GitHub\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\ref\RodheLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\RodheLib.deps.json
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\RodheLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\RodheLib.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.Driver.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.Scope.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.Visa.Interop.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.ConfigServer.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.Driver.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.Scope.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.Visa.Interop.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\bin\Debug\net5.0\Ivi.ConfigServer.xml
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.csproj.AssemblyReference.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.csproj.ResolveComReference.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.AssemblyInfoInputs.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.AssemblyInfo.cs
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.csproj.CoreCompileInputs.cache
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.csproj.CopyComplete
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\refint\RodheLib.dll
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\RodheLib.pdb
+C:\Users\Matheus Timmers\Documents\WorkProjects\Automacao-Ensaios-WIFI-Bluetooth-main\RodheLib\obj\Debug\net5.0\ref\RodheLib.dll

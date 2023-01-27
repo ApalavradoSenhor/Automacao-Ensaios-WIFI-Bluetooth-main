@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7XYPST417Mo/3jvWdCOJu7cJ49IeEiFpspgaLFfep1a2pmTmeT6Hc+YN8Ewc2/HATjrjvXMQj7fHEJfG5d5mjA==",
+  "dgSpecHash": "MrsTeZYE8MKSoSgTzA2vCrxet9k2RxE69gKPh/3L3LnONz4DbVyFsZKY5iPI/cAvKl6akTdxV7v0RBnHh2kwIw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\RodheLib\\RodheLib.csproj",
+  "projectFilePath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\RodheLib\\RodheLib.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\10088365\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
+    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
   ],
   "logs": []
 }

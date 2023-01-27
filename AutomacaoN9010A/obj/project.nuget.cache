@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ygwxSm/6DjTWNjP6u6AI/oer/VS59R33Ag4ucfo1OOv+VHTUd8Tmf2Mh6L3nJZ8Q3ePCrPEm3VgHnYPFdqXFyw==",
+  "dgSpecHash": "bWFIg8Y4HVVsVJDFSXchARr4ET7/3Sdhvzg+1/VD793AbHVjovC/+E4OTF0m2dx6k+qgQYwmax+0UnXcSae7Qw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\10088365\\Documents\\GitHub\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
+  "projectFilePath": "C:\\Users\\Matheus Timmers\\Documents\\WorkProjects\\Automacao-Ensaios-WIFI-Bluetooth-main\\AutomacaoN9010A\\AutomacaoN9010A.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\10088365\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
+    "C:\\Users\\Matheus Timmers\\.nuget\\packages\\rsinstrument\\1.15.0\\rsinstrument.1.15.0.nupkg.sha512"
   ],
   "logs": []
 }
